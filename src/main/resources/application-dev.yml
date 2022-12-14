@@ -6,9 +6,12 @@ azure:
     app-id-uri: http://localhost
     tenant-id: a42e43e2-c7b8-499c-89a6-4b9bac2d5a6e
 authorization-clients:
-  graph:
-    scopes:
-      - https://graph.microsoft.com/User.Read
+#  graph:
+#    scopes:
+#      - https://graph.microsoft.com/User.Read
+  jwt-auth:
+    scoeps:
+      - api://jwt-auth/web/AD.Access
 logging:
   level:
     org:
