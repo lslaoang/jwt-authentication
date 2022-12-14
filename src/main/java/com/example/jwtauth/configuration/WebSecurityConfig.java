@@ -2,6 +2,7 @@ package com.example.jwtauth.configuration;
 
 
 import com.azure.spring.aad.webapi.AADResourceServerWebSecurityConfigurerAdapter;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,15 +18,15 @@ public class WebSecurityConfig extends AADResourceServerWebSecurityConfigurerAda
         super.configure(http);
         http
                 .exceptionHandling()
-                .accessDeniedPage("/access-denied").and()
+                .accessDeniedPage("/api/access-denied").and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests(requests -> requests
-//                        .mvcMatchers(HttpMethod.GET, "/").anonymous()
-//                        .mvcMatchers(HttpMethod.GET, "/api/**").authenticated()
-//                        .mvcMatchers(HttpMethod.POST, "/api/other").hasAnyRole("role")
-                        .anyRequest().authenticated())
+                        .mvcMatchers(HttpMethod.GET, "/api/access-denied").anonymous()
+                        .mvcMatchers(HttpMethod.GET,"/api/**").authenticated()
+                        .mvcMatchers(HttpMethod.POST,"/api/**").authenticated()
+                        .anyRequest().denyAll())
                 .headers()
                 .contentSecurityPolicy("default-src 'none'");
     }

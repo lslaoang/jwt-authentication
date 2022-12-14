@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.http.HttpStatus.ACCEPTED;
+import static org.springframework.http.HttpStatus.FORBIDDEN;
 
 @RestController
 @RequestMapping("/api")
@@ -14,16 +15,16 @@ public class ResponseController {
 
     @GetMapping(path = {"/", "/index", "/request"})
     public ResponseEntity acceptRequest(){
-        return new ResponseEntity<>("Accepted!", ACCEPTED);
+        return new ResponseEntity<>("Get request accepted!", ACCEPTED);
     }
 
-    @GetMapping(path = {"/other"})
-    public ResponseEntity acceptRequestOther(){
-        return new ResponseEntity<>("Get Accepted!", ACCEPTED);
+    @PostMapping(path = { "/post"})
+    public ResponseEntity acceptPost(){
+        return new ResponseEntity<>("Post request accepted!", ACCEPTED);
     }
 
-    @PostMapping(path = {"/post"})
-    public ResponseEntity postSomething(){
-        return new ResponseEntity<>("Post Accepted!", ACCEPTED);
+    @GetMapping(path = {"/access-denied"})
+    public ResponseEntity deny(){
+        return new ResponseEntity<>("Forbidden Access!", FORBIDDEN);
     }
 }
