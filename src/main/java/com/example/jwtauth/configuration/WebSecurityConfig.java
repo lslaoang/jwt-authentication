@@ -22,8 +22,8 @@ public class WebSecurityConfig extends AADResourceServerWebSecurityConfigurerAda
                 .and()
                 .authorizeRequests(requests -> requests
                         .mvcMatchers(HttpMethod.GET, "/api/access-denied").anonymous()
-                        .mvcMatchers(HttpMethod.GET,"/api/**").authenticated()
-                        .mvcMatchers(HttpMethod.POST,"/api/**").authenticated()
+                        .mvcMatchers(HttpMethod.GET,"/**").authenticated()
+                        .mvcMatchers(HttpMethod.POST,"/**").authenticated()
                         .anyRequest().denyAll())
                 .headers()
                 .contentSecurityPolicy("default-src 'none'");
