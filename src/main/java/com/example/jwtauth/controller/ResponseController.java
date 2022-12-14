@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 @RequestMapping("/api")
 public class ResponseController {
 
-    @GetMapping(path = {"/", "/index", "/request"})
+    @GetMapping(path = {"/get"})
     public ResponseEntity acceptRequest(){
         return new ResponseEntity<>("Get request accepted!", ACCEPTED);
     }
