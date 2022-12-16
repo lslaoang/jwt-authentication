@@ -1,5 +1,7 @@
 package com.example.jwtauth.controller;
 
+import com.example.jwtauth.response.AccessDenied;
+import com.example.jwtauth.response.AccessGranted;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,16 +17,16 @@ public class ResponseController {
 
     @GetMapping(path = {"/get"})
     public ResponseEntity acceptRequest(){
-        return new ResponseEntity<>("Get request accepted!", ACCEPTED);
+        return new ResponseEntity<>(new AccessGranted(), ACCEPTED);
     }
 
     @PostMapping(path = { "/post"})
     public ResponseEntity acceptPost(){
-        return new ResponseEntity<>("Post request accepted!", ACCEPTED);
+        return new ResponseEntity<>(new AccessGranted(), ACCEPTED);
     }
 
     @GetMapping(path = {"/access-denied"})
     public ResponseEntity deny(){
-        return new ResponseEntity<>("Forbidden Access!", FORBIDDEN);
+        return new ResponseEntity<>(new AccessDenied(), FORBIDDEN);
     }
 }
